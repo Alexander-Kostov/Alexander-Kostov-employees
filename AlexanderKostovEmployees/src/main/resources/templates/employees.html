@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Employees List</h1>
+<hr>
+
+<table>
+    <tr class="header">
+        <th>Employee ID</th>
+        <th>Project ID</th>
+        <th>Date From</th>
+        <th>Date To</th>
+    </tr>
+
+    <th:block th:each="employee : ${employees}">
+        <tr>
+            <td th:text="${employee.getId()}"></td>
+            <td th:text="${employee.getProjectId()}">2</td>
+            <td th:text="${employee.getDateFrom()}">3</td>
+            <td th:text="${employee.getDateTo()}">4</td>
+        </tr>
+    </th:block>
+</table>
+
+<form th:action="@{/home}" th:method="GET">
+    <div class="container">
+        <h2>Find Longest Duration Pair</h2>
+        <button id="calculate-btn">Calculate</button>
+    </div>
+</form>
+
+
+    <table th:if="${isClicked}">
+        <tr class="header">
+            <th>Employee ID# 1</th>
+            <th>Employee ID #2</th>
+            <th>Project ID</th>
+            <th>Days Worked</th>
+        </tr>
+
+        <tr>
+            <td th:text="*{pairs.get(0)}"></td>
+            <td th:text="*{pairs.get(1)}"></td>
+            <td th:text="*{pairs.get(2)}"></td>
+            <td th:text="*{pairs.get(3)}"></td>
+
+        </tr>
+    </table>
+
+
+</body>
+</html>
